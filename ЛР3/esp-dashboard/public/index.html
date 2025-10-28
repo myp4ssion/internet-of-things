@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ESP Sensor Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 18px;
+        max-width: 900px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .card {
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        margin-bottom: 12px;
+      }
+      .grid {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        flex: 1 1 150px;
+        min-width: 120px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        font-size: 13px;
+      }
+      .muted {
+        color: #666;
+        font-size: 13px;
+      }
+      button {
+        padding: 8px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>ESP Sensor Dashboard</h1></header>
+
+    <div class="card">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div>
+          <strong>Последние данные</strong>
+          <div id="last-ts" class="muted"></div>
+        </div>
+        <div>
+          <button id="btn-refresh">Обновить</button>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top: 12px">
+        <div class="card stat" id="temp-card">
+          <div class="muted">Температура (°C)</div>
+          <div id="temp-value" style="font-size: 28px">—</div>
+        </div>
+
+        <div class="card stat" id="humi-card">
+          <div class="muted">Влажность (%)</div>
+          <div id="humi-value" style="font-size: 28px">—</div>
+        </div>
+
+        <div class="card stat" id="light-card">
+          <div class="muted">Light (ADC)</div>
+          <div id="light-value" style="font-size: 28px">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <strong>История (последние)</strong>
+      <div style="margin-top: 8px">
+        <table>
+          <thead>
+            <tr>
+              <th>Время</th>
+              <th>Темп</th>
+              <th>Влажн</th>
+              <th>Light</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
